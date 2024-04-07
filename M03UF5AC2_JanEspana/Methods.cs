@@ -74,18 +74,18 @@ namespace M03UF5AC2_JanEspana
         }
         public static void CalculateAvgConsumOfWater()
         {
-            //Calcula la media para cada comarca
             XDocument xmlDoc = XDocument.Load("ConsumAiguaCatalunya.xml");
             var query = from x in xmlDoc.Descendants("Consum")
-                        group x by (string)x.Element("Comarca") into g
+                        group x by new { Any = x.Element("Any").Value, Comarca = x.Element("Comarca").Value } into g
                         select new
                         {
-                            Comarca = g.Key,
-                            Avg = g.Average(x => (double)x.Element("ConsumDomesticPerCapita"))
+                            Any = g.Key.Any,
+                            Comarca = g.Key.Comarca,
+                            AvgConsum = g.Average(x => (double)x.Element("ConsumDomesticPerCapita") * (int)x.Element("Poblacio"))
                         };
             foreach (var item in query)
             {
-                Console.WriteLine(item.Comarca + " " + Math.Round(item.Avg, 2));
+                Console.WriteLine(item.Any + " " + item.Comarca + " " + item.AvgConsum);
             }
         }
         public static void ShowHighestConsumPerCapita()
