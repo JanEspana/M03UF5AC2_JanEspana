@@ -36,9 +36,9 @@ namespace M03UF5AC2_JanEspana
                     XMLMethods.CalculateAvgConsumOfWater();
                     break;
                 case "3":
-                    Console.Write("Comarca with the most consume per capita: ");
+                    Console.WriteLine("Comarca with the most consume per capita: ");
                     XMLMethods.ShowHighestConsumPerCapita();
-                    Console.Write("Comarca with the least consume per capita: ");
+                    Console.WriteLine("Comarca with the least consume per capita: ");
                     XMLMethods.ShowLowestConsumPerCapita();
                     break;
                 case "4":

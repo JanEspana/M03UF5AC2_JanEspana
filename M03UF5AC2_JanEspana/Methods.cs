@@ -92,7 +92,7 @@ namespace M03UF5AC2_JanEspana
         {
             XDocument xmlDoc = XDocument.Load("ConsumAiguaCatalunya.xml");
             var query = (from x in xmlDoc.Descendants("Consum")
-                         orderby (double)x.Element("ConsumDomesticPerCapita") descending select x).Take(1);
+                         orderby (double)x.Element("ConsumDomesticPerCapita") descending select x).Take(5);
             foreach (var item in query)
             {
                 Console.WriteLine(item.Element("Comarca").Value);
@@ -100,9 +100,10 @@ namespace M03UF5AC2_JanEspana
         }
         public static void ShowLowestConsumPerCapita()
         {
+            //selecciona l'any i la comarca amb el consum per capita més baix
             XDocument xmlDoc = XDocument.Load("ConsumAiguaCatalunya.xml");
             var query = (from x in xmlDoc.Descendants("Consum")
-                         orderby (double)x.Element("ConsumDomesticPerCapita") ascending select x).Take(1);
+                         orderby (double)x.Element("ConsumDomesticPerCapita") ascending select x).Take(5);
             foreach (var item in query)
             {
                 Console.WriteLine(item.Element("Comarca").Value);
