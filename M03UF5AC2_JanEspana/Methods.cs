@@ -9,9 +9,13 @@ namespace M03UF5AC2_JanEspana
     public class CSVMethods
     {
         public static void ReadCsv()
-        {
-            using var reader = new StreamReader("Consum_d_aigua_a_Catalunya_per_comarques_20240402.csv");
-            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+        {   
+            using var reader = new System.IO.StreamReader(@"../../../Consum_d_aigua_a_Catalunya_per_comarques_20240402.csv");
+            var options = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                HasHeaderRecord = true,
+            };
+            using var csv = new CsvReader(reader, options);
             var records = csv.GetRecords<Consum>();
             foreach (var record in records)
             {
